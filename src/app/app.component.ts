@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
-
-import { WelcomeComponent } from './components/welcome.component';
+import { Component, inject } from '@angular/core';
+import { NavBarComponent } from './components/nav-bar/nav-bar';
+import { RouterOutlet } from '@angular/router';
+import { PrefsStore } from './services/prefs.store';
 
 @Component({
   selector: 'app-root',
   template: `
+    <app-nav-bar />
     <main class="container mx-auto">
-      <app-welcome />
+      <router-outlet />
     </main>
   `,
   styles: [],
-  imports: [WelcomeComponent],
+  imports: [NavBarComponent, RouterOutlet],
 })
-export class AppComponent {}
+export class AppComponent {
+  store = inject(PrefsStore); // only doing this so that it will create it, and run the onInit
+}
