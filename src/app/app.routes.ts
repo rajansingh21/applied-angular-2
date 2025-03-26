@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile';
 // these are "modes" we can put our application in.
 
 export const routes: Routes = [
+  // relative to app-component
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -20,15 +21,15 @@ export const routes: Routes = [
       import('./features/demos/demos.routes').then((r) => r.DEMO_ROUTES),
   },
   {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
     path: 'counter',
     loadChildren: () =>
       import('./features/counter-lab/counter.routes').then(
         (r) => r.COUNTER_ROUTES,
       ),
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
   },
   {
     path: '**',

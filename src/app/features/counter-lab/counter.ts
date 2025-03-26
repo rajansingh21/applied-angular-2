@@ -1,21 +1,24 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { SectionNavComponent } from '../../../shared/components/section-nav/section-nav';
+import { CounterStore } from './services/counter-store';
 
 @Component({
   selector: 'app-counter-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, RouterOutlet],
-  template: `
-    <div>Counter Stuff Goes Here</div>
-    <div class="flex gap-4">
-      <a class="link" routerLink="ui">UI</a>
-      <a class="link" RouterLink="UI">UI</a>
-    </div>
-
-    <div>
-      <router-outlet />
-    </div>
-  `,
+  imports: [SectionNavComponent],
+  providers: [CounterStore],
+  template: ` <app-section-nav sectionName="Counter Lab" [links]="links()" /> `,
   styles: ``,
 })
-export class CounterComponent {}
+export class CounterComponent {
+  links = signal([
+    {
+      href: 'ui',
+      label: 'Counter',
+    },
+    {
+      href: 'prefs',
+      label: 'Preferences',
+    },
+  ]);
+}
