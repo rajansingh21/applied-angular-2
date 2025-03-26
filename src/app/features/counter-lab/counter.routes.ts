@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import { CounterComponent } from './counter';
-import { UiComponent } from './pages/ui.component';
+import { CounterComponent } from './counter.component';
+import { UiComponent } from './pages/ui';
+import { PrefsComponent } from './pages/prefs';
 export const COUNTER_ROUTES: Routes = [
   {
     path: '',
@@ -9,6 +10,10 @@ export const COUNTER_ROUTES: Routes = [
       {
         path: 'ui',
         component: UiComponent,
+      },
+      {
+        path: 'prefs',
+        component: PrefsComponent,
       },
     ],
   },

@@ -20,15 +20,15 @@ export const routes: Routes = [
       import('./features/demos/demos.routes').then((r) => r.DEMO_ROUTES),
   },
   {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
     path: 'counter',
     loadChildren: () =>
       import('./features/counter-lab/counter.routes').then(
         (r) => r.COUNTER_ROUTES,
       ),
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
   },
   {
     path: '**',
