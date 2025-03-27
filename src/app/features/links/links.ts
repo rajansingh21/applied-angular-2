@@ -1,13 +1,36 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { ListComponent } from './components/list';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { SectionNavComponent } from '../../../shared/components/section-nav/section-nav';
+import { LinksStore } from './services/links-store';
 import { LinksDataService } from './services/links-data';
 
 @Component({
   selector: 'app-links',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [LinksDataService],
-  imports: [ListComponent],
-  template: ` <app-links-list /> `,
+  providers: [LinksStore, LinksDataService],
+  imports: [SectionNavComponent],
+  template: `
+    <app-section-nav
+      sectionName="Developer Resources"
+      [links]="[
+        {
+          label: 'List',
+          href: '/links/list',
+        },
+        {
+          label: 'Reading List',
+          href: '/links/reading-list',
+        },
+      ]"
+    >
+      <div class="h-4 w-full">
+        @if (store.isFetching()) {
+          <progress class="progress progress-info w-full"></progress>
+        }
+      </div>
+    </app-section-nav>
+  `,
   styles: ``,
 })
-export class LinksComponent {}
+export class LinksComponent {
+  store = inject(LinksStore);
+}
